@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!--编码字符集-->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!--开启动态方法调用，不推荐.推荐使用通配符方式，指定method属性
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />--> 
+	<!--开发者模式，更多的堆栈调试信息，生产环境应关闭-->
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.extension" value="htm" />
+	<constant name="struts.freemarker.templatesCache" value="true" />
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+<!-- 	<constant name="struts.allowed.action.names" value="[a-z]*[A-Z]*[0-9]*[.\-_!/]*" /> -->
+	<constant name="struts.allowed.action.names" value="[a-zA-Z]*[-]*[a-zA-Z]*[0-9]*" />
+	<!-- struts常量配置 -->
+	<!-- 
+    <constant name="struts.i18n.reload" value="false" />
+    <constant name="struts.configuration.xml.reload" value="false" />
+    <constant name="struts.custom.i18n.resources" value="globalMessages" />
+    <constant name="struts.freemarker.manager.classname" value="customFreemarkerManager" />
+    <constant name="struts.serve.static" value="true" />
+    <constant name="struts.serve.static.browserCache" value="false" />-->
+	<!--导入其他的struts配置文件
+    <include file="struts-user-tiles.xml"/>-->
+    
+    <!-- 用户模组 --> 
+	<package name="user" extends="struts-default">
+		<action name="initial" class="com.vteba.user.action.UserAction" method="initial">
+			<result name="success">/WEB-INF/jsp/user/user-initial.jsp</result>
+		</action>
+		<action name="add" class="com.vteba.user.action.UserAction" method="add">
+			<result name="success">/WEB-INF/jsp/user/user-add.jsp</result>
+		</action>
+		<action name="doAdd" class="com.vteba.user.action.UserAction" method="doAdd">
+			<result name="success">/WEB-INF/jsp/user/user-add.jsp</result>
+		</action>
+		<action name="delete" class="com.vteba.user.action.UserAction" method="delete">
+			<result name="success" type="chain">initial</result>
+		</action>
+		<action name="detail" class="com.vteba.user.action.UserAction" method="detail">
+			<result name="success">/WEB-INF/jsp/user/user-detail.jsp</result>
+		</action>
+		<action name="edit" class="com.vteba.user.action.UserAction" method="edit">
+			<result name="success">/WEB-INF/jsp/user/user-edit.jsp</result>
+		</action>
+		<action name="update" class="com.vteba.user.action.UserAction" method="update">
+			<result name="success" type="chain">initial</result>
+		</action>
+
+	</package>
+	
+</struts>
